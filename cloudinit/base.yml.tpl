@@ -1,14 +1,17 @@
 package_update: true
 package_upgrade: true
 
-timezone: Europe/Berlin
+timezone: Asia/Singapore
 
 manage_etc_hosts: true
 
 packages:
-  - docker.io
   - curl
+  - docker.io
+  - fish
   - git
+  - neovim
+  - silversearcher-ag
   - snapd
 
 users:
@@ -39,7 +42,6 @@ write_files:
 runcmd:
   - netplan apply
   - sed -i '/PermitRootLogin/d' /etc/ssh/sshd_config
-  - echo "PermitRootLogin no" >> /etc/ssh/sshd_config
   - systemctl restart sshd
   - usermod -aG docker kamal
   - docker network create --driver bridge private_network
@@ -48,6 +50,5 @@ runcmd:
   - DEBIAN_FRONTEND=noninteractive dpkg-reconfigure -plow unattended-upgrades
   - echo 'Unattended-Upgrade::Automatic-Reboot "true";' | tee -a /etc/apt/apt.conf.d/50unattended-upgrades
   - echo 'Unattended-Upgrade::Automatic-Reboot-Time "05:00";' | tee -a /etc/apt/apt.conf.d/50unattended-upgrades
-  - mkdir -p /letsencrypt && touch /letsencrypt/acme.json && chmod 600 /letsencrypt/acme.json
-  - chown -R kamal:kamal /letsencrypt
+  - chsh -s /usr/bin/fish root
   - reboot

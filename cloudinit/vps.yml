@@ -1,4 +1,4 @@
-hostname: <YOUR_HOSTNAME>
+hostname: vps
 fqdn: <YOUR_FQDN>
 
 runcmd:

@@ -4,7 +4,7 @@ data "cloudinit_config" "cloud_config_vps" {
 
   part {
     content_type = "text/cloud-config"
-    content      = templatefile("${path.module}/cloudinit/base.yml.tpl", { ssh_key = var.ssh_vps_kamal_key })
+    content      = templatefile("${path.module}/cloudinit/base.yml.tpl", { ssh_vps_kamal_key = var.ssh_vps_kamal_key })
   }
 
   part {

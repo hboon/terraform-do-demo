@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = ">= 1.45"
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.0"
     }
 
     cloudinit = {
@@ -12,6 +12,6 @@ terraform {
   }
 }
 
-provider "hcloud" {
-  token = var.hetzner_api_key
+provider "digitalocean" {
+  token = var.host_api_key
 }
